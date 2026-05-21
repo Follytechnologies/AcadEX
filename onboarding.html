@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Student Guide</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="brand-logo-sm">Ax</div>
+      Acad<span>Ex</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-100.html">🏠 Dashboard</a>
+      <a class="nav-link" href="cbt.html">📋 CBT</a>
+      <a class="nav-link" href="materials.html">📚 Materials</a>
+      <a class="nav-link active" href="onboarding.html">🧭 Guide</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ======= LAYOUT ======= -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link" href="dashboard-100.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="cbt.html"><span class="icon">📋</span> Take CBT Test</a>
+      <a class="sidebar-link" href="review.html"><span class="icon">🔍</span> Review Results</a>
+      <a class="sidebar-link" href="appeal.html"><span class="icon">⚖️</span> Submit Appeal</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <a class="sidebar-link active" href="onboarding.html"><span class="icon">🧭</span> Student Guide</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Hero -->
+      <div class="onboarding-hero animate-up">
+        <div class="hero-left">
+          <div class="hero-tag">🧭 100 Level Fresher Guide</div>
+          <h1 class="hero-title">Welcome to <span>UNILAG</span></h1>
+          <p class="hero-sub">Everything you need to navigate your first year successfully — from registration to results, all in one place.</p>
+          <div class="hero-progress-wrap">
+            <div class="hero-progress-label">
+              <span>Your Progress</span>
+              <span id="progressLabel">0 / 8 completed</span>
+            </div>
+            <div class="progress">
+              <div class="progress-fill" id="heroProgress" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-stat-grid">
+            <div class="hero-stat">
+              <div class="hero-stat-icon">📋</div>
+              <div class="hero-stat-val" id="completedCount">0</div>
+              <div class="hero-stat-label">Completed</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-icon">⏳</div>
+              <div class="hero-stat-val" id="remainingCount">8</div>
+              <div class="hero-stat-label">Remaining</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs animate-up delay-1">
+        <button class="cat-tab active" onclick="filterCategory('all', this)">All</button>
+        <button class="cat-tab" onclick="filterCategory('registration', this)">📝 Registration</button>
+        <button class="cat-tab" onclick="filterCategory('academic', this)">🎓 Academic</button>
+        <button class="cat-tab" onclick="filterCategory('campus', this)">🏛 Campus Life</button>
+        <button class="cat-tab" onclick="filterCategory('tips', this)">💡 Tips</button>
+      </div>
+
+      <!-- Guide Cards -->
+      <div class="guide-grid animate-up delay-2" id="guideGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Quick Links -->
+      <div class="quick-links-section animate-up delay-3">
+        <h2 class="section-title">⚡ Quick Links</h2>
+        <div class="quick-links-grid">
+          <a class="quick-link-card" href="cbt.html">
+            <div class="ql-icon">📋</div>
+            <div class="ql-text">
+              <strong>Take Practice Test</strong>
+              <span>Practice CBT before your exams</span>
+            </div>
+            <div class="ql-arrow">→</div>
+          </a>
+          <a class="quick-link-card" href="materials.html">
+            <div class="ql-icon">📚</div>
+            <div class="ql-text">
+              <strong>Course Materials</strong>
+              <span>Download verified lecture notes</span>
+            </div>
+            <div class="ql-arrow">→</div>
+          </a>
+          <a class="quick-link-card" href="appeal.html">
+            <div class="ql-icon">⚖️</div>
+            <div class="ql-text">
+              <strong>Submit Appeal</strong>
+              <span>Challenge a wrong result</span>
+            </div>
+            <div class="ql-arrow">→</div>
+          </a>
+          <a class="quick-link-card" href="dashboard-100.html">
+            <div class="ql-icon">🏠</div>
+            <div class="ql-text">
+              <strong>My Dashboard</strong>
+              <span>View your academic overview</span>
+            </div>
+            <div class="ql-arrow">→</div>
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Guide Detail Modal -->
+  <div class="modal-overlay" id="guideModal">
+    <div class="modal guide-modal">
+      <div class="guide-modal-header">
+        <div class="guide-modal-icon" id="modalIcon">📋</div>
+        <div>
+          <h3 class="modal-title" id="modalTitle">Guide Title</h3>
+          <div class="badge badge-primary" id="modalCategory">Category</div>
+        </div>
+        <button class="btn btn-ghost btn-sm modal-close" onclick="closeGuideModal()">✕</button>
+      </div>
+      <div class="guide-modal-body" id="modalBody">
+        <!-- Populated by JS -->
+      </div>
+      <div class="guide-modal-footer">
+        <button class="btn btn-accent btn-sm" id="modalMarkBtn" onclick="markCurrentDone()">
+          ✓ Mark as Done
+        </button>
+        <button class="btn btn-ghost btn-sm" onclick="closeGuideModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="onboarding.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>

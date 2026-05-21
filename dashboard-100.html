@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — 100 Level Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="dashboard-100.css">
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="brand-logo-sm">Ax</div>
+      Acad<span>Ex</span>
+    </div>
+
+    <div class="nav-links">
+      <a class="nav-link active" href="dashboard-100.html">🏠 Home</a>
+      <a class="nav-link" href="cbt.html">📋 CBT</a>
+      <a class="nav-link" href="materials.html">📚 Materials</a>
+      <a class="nav-link" href="onboarding.html">🧭 Guide</a>
+    </div>
+
+    <div class="nav-user">
+      <div class="level-chip" id="levelChip">100 Level</div>
+      <div class="nav-info">
+        <span class="nav-name" id="navUserName">Student</span>
+        <span class="nav-matric" id="navMatric">—</span>
+      </div>
+      <div class="avatar" id="navAvatar">AB</div>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ======= LAYOUT ======= -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link active" href="dashboard-100.html">
+        <span class="icon">🏠</span> Dashboard
+      </a>
+      <a class="sidebar-link" href="cbt.html">
+        <span class="icon">📋</span> Take CBT Test
+      </a>
+      <a class="sidebar-link" href="review.html">
+        <span class="icon">🔍</span> Review Results
+      </a>
+      <a class="sidebar-link" href="appeal.html">
+        <span class="icon">⚖️</span> Submit Appeal
+      </a>
+
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html">
+        <span class="icon">📚</span> Course Materials
+      </a>
+      <a class="sidebar-link" href="onboarding.html">
+        <span class="icon">🧭</span> Student Guide
+      </a>
+
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()">
+        <span class="icon">🚪</span> Sign Out
+      </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner animate-up">
+        <div class="welcome-left">
+          <div class="welcome-tag">100 Level · First Semester</div>
+          <h1 class="welcome-title">Welcome, <span id="firstName">Student</span> 👋</h1>
+          <p class="welcome-sub">You're on track. Keep pushing — your academic journey starts here.</p>
+          <div class="welcome-actions">
+            <a href="cbt.html" class="btn btn-accent btn-sm">Take a Test →</a>
+            <a href="onboarding.html" class="btn btn-outline-white btn-sm">Student Guide</a>
+          </div>
+        </div>
+        <div class="welcome-right">
+          <div class="welcome-illustration">
+            <div class="wi-circle wi-c1"></div>
+            <div class="wi-circle wi-c2"></div>
+            <div class="wi-icon">🎓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid animate-up delay-1">
+        <div class="stat-card">
+          <div class="stat-icon">📋</div>
+          <div class="stat-label">Tests Taken</div>
+          <div class="stat-value" id="statTests">3</div>
+          <div class="stat-sub">This semester</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-label">Avg. Score</div>
+          <div class="stat-value" id="statAvg">72%</div>
+          <div class="stat-sub">Across all tests</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚖️</div>
+          <div class="stat-label">Appeals</div>
+          <div class="stat-value" id="statAppeals">1</div>
+          <div class="stat-sub">Pending review</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-label">Materials</div>
+          <div class="stat-value" id="statMaterials">5</div>
+          <div class="stat-sub">Available to you</div>
+        </div>
+      </div>
+
+      <!-- Two Column -->
+      <div class="two-col animate-up delay-2">
+
+        <!-- Recent Tests -->
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Recent Tests</h3>
+            <a href="cbt.html" class="card-action">View All →</a>
+          </div>
+
+          <div class="test-list" id="testList">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions-col">
+          <div class="card quick-card" onclick="window.location.href='cbt.html'">
+            <div class="quick-icon" style="background: rgba(26,60,110,0.08);">📋</div>
+            <div class="quick-text">
+              <strong>Take CBT Test</strong>
+              <span>Start a new practice or exam test</span>
+            </div>
+            <div class="quick-arrow">→</div>
+          </div>
+
+          <div class="card quick-card" onclick="window.location.href='review.html'">
+            <div class="quick-icon" style="background: rgba(0,201,167,0.08);">🔍</div>
+            <div class="quick-text">
+              <strong>Review My Results</strong>
+              <span>See answers, scores & AI explanations</span>
+            </div>
+            <div class="quick-arrow">→</div>
+          </div>
+
+          <div class="card quick-card" onclick="window.location.href='appeal.html'">
+            <div class="quick-icon" style="background: rgba(255,184,0,0.1);">⚖️</div>
+            <div class="quick-text">
+              <strong>Submit an Appeal</strong>
+              <span>Challenge a question or marking error</span>
+            </div>
+            <div class="quick-arrow">→</div>
+          </div>
+
+          <div class="card quick-card" onclick="window.location.href='materials.html'">
+            <div class="quick-icon" style="background: rgba(26,60,110,0.06);">📚</div>
+            <div class="quick-text">
+              <strong>Course Materials</strong>
+              <span>Access verified lecturer resources</span>
+            </div>
+            <div class="quick-arrow">→</div>
+          </div>
+
+          <div class="card quick-card" onclick="window.location.href='onboarding.html'">
+            <div class="quick-icon" style="background: rgba(255,77,79,0.06);">🧭</div>
+            <div class="quick-text">
+              <strong>100 Level Guide</strong>
+              <span>Navigate UNILAG as a fresher</span>
+            </div>
+            <div class="quick-arrow">→</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Course Materials Preview -->
+      <div class="card animate-up delay-3">
+        <div class="card-head">
+          <h3 class="card-title">Latest Course Materials</h3>
+          <a href="materials.html" class="card-action">See All →</a>
+        </div>
+        <div class="table-wrap">
+          <table id="materialsTable">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Course</th>
+                <th>Type</th>
+                <th>Uploaded</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="materialsBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Onboarding Progress -->
+      <div class="card onboarding-card animate-up delay-4">
+        <div class="card-head">
+          <h3 class="card-title">🧭 Fresher Checklist</h3>
+          <span class="badge badge-gold" id="checklistProgress">2 / 5 done</span>
+        </div>
+        <p class="text-muted text-sm mb-16">Complete these steps to settle in as a 100 Level student.</p>
+        <div class="checklist" id="checklist">
+          <!-- Populated by JS -->
+        </div>
+        <a href="onboarding.html" class="btn btn-primary btn-sm mt-16">Open Full Guide →</a>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="dashboard-100.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>

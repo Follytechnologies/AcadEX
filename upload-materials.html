@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Upload Materials</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="upload-materials.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="lecturer-dashboard.html">🏠 Dashboard</a>
+      <a class="nav-link active" href="upload-materials.html">📤 Upload</a>
+      <a class="nav-link" href="manage-cbt.html">📋 CBT</a>
+      <a class="nav-link" href="appeals-manager.html">⚖️ Appeals</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">DR</div>
+      <span class="nav-name" id="navUserName">Lecturer</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Portal</div>
+      <a class="sidebar-link" href="lecturer-dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link active" href="upload-materials.html"><span class="icon">📤</span> Upload Materials</a>
+      <a class="sidebar-link" href="manage-cbt.html"><span class="icon">📋</span> Manage CBT</a>
+      <a class="sidebar-link" href="appeals-manager.html"><span class="icon">⚖️</span> Appeals</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="page-header animate-up">
+        <div><h1 class="page-title">📤 Upload Materials</h1><p class="page-subtitle">Upload verified course materials for your students.</p></div>
+      </div>
+
+      <div class="upload-layout animate-up delay-1">
+        <!-- Upload Form -->
+        <div class="card">
+          <div class="card-head"><h3 class="card-title">New Material</h3></div>
+          <div class="form-group"><label class="form-label">Material Title</label><input type="text" class="form-input" id="matTitle" placeholder="e.g. MTH 101 - Lecture Notes Week 5"></div>
+          <div class="grid-2">
+            <div class="form-group"><label class="form-label">Course</label>
+              <select class="form-select" id="matCourse">
+                <option value="">Select Course</option>
+                <option>MTH 101</option><option>MTH 201</option><option>MTH 301</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Material Type</label>
+              <select class="form-select" id="matType">
+                <option>Lecture Notes</option><option>Course Outline</option><option>Past Questions</option><option>Assignment</option><option>Reference Material</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">Description (Optional)</label><textarea class="form-input" id="matDesc" rows="3" placeholder="Brief description of this material..."></textarea></div>
+          <div class="upload-drop-zone" id="uploadZone" onclick="AcadEx.showToast('File upload simulated for demo','info')">
+            <div class="udz-icon">📁</div>
+            <div class="udz-text"><strong>Click to upload or drag & drop</strong><span>PDF, DOCX, PPTX — Max 25MB</span></div>
+          </div>
+          <button class="btn btn-primary btn-full mt-16" onclick="uploadMaterial()">📤 Upload Material</button>
+        </div>
+
+        <!-- Uploaded Materials -->
+        <div class="card">
+          <div class="card-head"><h3 class="card-title">My Uploads</h3><span class="badge badge-primary" id="uploadCount">0</span></div>
+          <div class="uploaded-list" id="uploadedList"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="upload-materials.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Assignments</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="assignments.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-200.html">🏠 Dashboard</a>
+      <a class="nav-link" href="past-questions.html">📖 Past Questions</a>
+      <a class="nav-link" href="gpa-tracker.html">📊 GPA</a>
+      <a class="nav-link active" href="assignments.html">📝 Assignments</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link" href="dashboard-200.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="past-questions.html"><span class="icon">📖</span> Past Questions</a>
+      <a class="sidebar-link" href="gpa-tracker.html"><span class="icon">📊</span> GPA Tracker</a>
+      <a class="sidebar-link active" href="assignments.html"><span class="icon">📝</span> Assignments</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="page-header animate-up">
+        <div>
+          <h1 class="page-title">📝 Assignments</h1>
+          <p class="page-subtitle">Submit your assignments and track deadlines in one place.</p>
+        </div>
+        <div class="assign-stats" id="assignStats"></div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="assign-tabs animate-up delay-1">
+        <button class="assign-tab active" onclick="filterAssignments('all',this)">All</button>
+        <button class="assign-tab" onclick="filterAssignments('pending',this)">⏳ Pending</button>
+        <button class="assign-tab" onclick="filterAssignments('submitted',this)">✅ Submitted</button>
+        <button class="assign-tab" onclick="filterAssignments('graded',this)">🎯 Graded</button>
+      </div>
+
+      <!-- Assignments List -->
+      <div class="assignments-list animate-up delay-2" id="assignmentsList"></div>
+    </main>
+  </div>
+
+  <!-- Submit Modal -->
+  <div class="modal-overlay" id="submitModal">
+    <div class="modal">
+      <h3 class="modal-title" id="submitModalTitle">Submit Assignment</h3>
+      <p class="modal-body" id="submitModalCourse">MTH 201</p>
+      <div class="form-group">
+        <label class="form-label">Your Submission</label>
+        <textarea class="form-input" id="submissionText" rows="5" placeholder="Paste your answer or write your submission here..."></textarea>
+      </div>
+      <div class="upload-zone" onclick="AcadEx.showToast('File upload available in Phase 2','info')">
+        <span>📎</span> <span>Attach a file (Phase 2)</span>
+      </div>
+      <div class="modal-actions mt-16">
+        <button class="btn btn-ghost" onclick="closeSubmitModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="confirmSubmit()">Submit Assignment</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="assignments.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

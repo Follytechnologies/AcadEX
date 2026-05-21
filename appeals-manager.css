@@ -1,0 +1,27 @@
+/* ACADEX — Appeals Manager */
+.nav-brand{font-family:'Clash Display',sans-serif;font-size:22px;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:10px}.nav-brand span{color:var(--accent)}.brand-logo-sm{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:14px;font-weight:700;color:white}.nav-user{display:flex;align-items:center;gap:12px}.nav-name{font-size:13px;font-weight:600;color:var(--ink)}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:20px;flex-wrap:wrap}
+.appeal-mgr-stats{display:flex;gap:12px;flex-wrap:wrap}
+.amstat{background:white;border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 20px;text-align:center;min-width:80px}
+.amstat-val{font-family:'Clash Display',sans-serif;font-size:24px;font-weight:700;display:block}
+.amstat-label{font-size:11px;color:var(--ink-faint);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.appeals-filter{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.appeals-filter-btn{padding:9px 18px;border-radius:100px;font-size:13px;font-weight:600;color:var(--ink-muted);background:white;border:1.5px solid var(--border);cursor:pointer;transition:all .2s;font-family:'Satoshi',sans-serif}
+.appeals-filter-btn:hover{border-color:var(--primary);color:var(--primary)}
+.appeals-filter-btn.active{background:var(--primary);border-color:var(--primary);color:white}
+.appeals-manager-list{display:flex;flex-direction:column;gap:14px}
+.appeal-mgr-card{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all .2s}
+.appeal-mgr-card:hover{box-shadow:var(--shadow-md)}
+.appeal-mgr-card.pending{border-left:4px solid var(--gold)}
+.appeal-mgr-card.approved{border-left:4px solid var(--accent)}
+.appeal-mgr-card.rejected{border-left:4px solid var(--danger)}
+.appeal-mgr-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:12px}
+.appeal-mgr-student{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.appeal-mgr-meta{font-size:12px;color:var(--ink-faint)}
+.appeal-mgr-reason{font-size:13px;color:var(--ink-muted);line-height:1.6;padding:12px 14px;background:var(--off-white);border-radius:var(--radius-sm);margin:12px 0;border-left:3px solid var(--border)}
+.appeal-mgr-actions{display:flex;gap:8px;flex-wrap:wrap}
+.appeal-response{font-size:13px;color:var(--ink-muted);padding:10px 14px;background:rgba(0,201,167,.06);border:1px solid rgba(0,201,167,.2);border-radius:var(--radius-sm);margin-top:10px}
+.response-modal{max-width:520px}
+.appeal-detail-box{background:var(--off-white);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;font-size:13px;color:var(--ink-muted);line-height:1.6}
+.appeal-detail-box strong{display:block;color:var(--ink);margin-bottom:6px;font-size:14px}
+@media(max-width:768px){.nav-links{display:none}}

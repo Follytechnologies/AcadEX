@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- ======= LEFT PANEL ======= -->
+  <div class="left-panel animate-in">
+    <div class="grid-pattern"></div>
+    <div class="left-content">
+
+      <div class="brand">
+        <div class="brand-logo">Ax</div>
+        <div class="brand-name">Acad<span>Ex</span></div>
+      </div>
+
+      <div class="hero-text">
+        <div class="hero-tag">UNILAG Academic Platform</div>
+        <h1 class="hero-title">Your Academic<br>Life, <span>Simplified.</span></h1>
+        <p class="hero-sub">The transparent, inclusive academic platform built for every UNILAG student — from 100 Level to final year.</p>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon">📋</div>
+          <div class="feature-text">
+            <strong>Transparent CBT</strong>
+            Review every answer after your exam — see what you got wrong and why.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📚</div>
+          <div class="feature-text">
+            <strong>Verified Materials</strong>
+            Access lecturer-uploaded notes, past questions, and outlines — all in one place.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <div class="feature-text">
+            <strong>Academic Dashboard</strong>
+            Track your GPA, performance trends, and upcoming deadlines at a glance.
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">
+            <strong>AI-Powered Explanations</strong>
+            Understand your mistakes instantly with AI-generated feedback on every question.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======= RIGHT PANEL ======= -->
+  <div class="right-panel animate-up">
+
+    <div class="login-header">
+      <h2 class="login-title">Welcome back 👋</h2>
+      <p class="login-sub">Sign in with your UNILAG credentials to continue.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-group">
+      <button class="tab-btn active" onclick="switchTab('student')">Student</button>
+      <button class="tab-btn" onclick="switchTab('lecturer')">Lecturer</button>
+    </div>
+
+    <!-- Error Message -->
+    <div class="error-msg" id="errorMsg">
+      <span>⚠️</span>
+      <span id="errorText">Invalid credentials. Please try again.</span>
+    </div>
+
+    <!-- Student Form -->
+    <div id="studentForm" class="login-form">
+      <label class="field-label">Matric Number</label>
+      <div class="input-wrapper">
+        <span class="input-icon">🎓</span>
+        <input
+          type="text"
+          class="input-field"
+          id="matricInput"
+          placeholder="e.g. 252604033"
+          maxlength="20"
+          oninput="onMatricInput(this.value)"
+        >
+      </div>
+
+      <div class="level-preview" id="levelPreview">
+        <span>✓</span>
+        <span id="levelText">Detected: 100 Level Student</span>
+      </div>
+
+      <label class="field-label">Password</label>
+      <div class="input-wrapper">
+        <span class="input-icon">🔒</span>
+        <input
+          type="password"
+          class="input-field"
+          id="studentPassword"
+          placeholder="Enter your password"
+        >
+      </div>
+
+      <div class="forgot-link"><a>Forgot password?</a></div>
+
+      <button class="btn btn-primary btn-full btn-lg" id="loginBtn" onclick="login()">
+        Sign In to AcadEx
+      </button>
+    </div>
+
+    <!-- Lecturer Form -->
+    <div id="lecturerForm" class="login-form" style="display: none;">
+      <label class="field-label">Staff ID or Email</label>
+      <div class="input-wrapper">
+        <span class="input-icon">👤</span>
+        <input
+          type="text"
+          class="input-field"
+          id="staffInput"
+          placeholder="e.g. LEC/2024/001"
+        >
+      </div>
+
+      <label class="field-label">Password</label>
+      <div class="input-wrapper">
+        <span class="input-icon">🔒</span>
+        <input
+          type="password"
+          class="input-field"
+          id="lecturerPassword"
+          placeholder="Enter your password"
+        >
+      </div>
+
+      <div class="forgot-link"><a>Forgot password?</a></div>
+
+      <button class="btn btn-primary btn-full btn-lg" id="loginBtn2" onclick="login()">
+        Sign In as Lecturer
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider"><span>Demo Accounts</span></div>
+
+    <!-- Demo Accounts -->
+    <div class="demo-accounts">
+      <div class="demo-label">Click to autofill</div>
+
+      <div class="demo-item" onclick="fillDemo('252604033', 'student123', 'student')">
+        <div class="demo-info">
+          Abdulhakeem Jimoh
+          <small>252604033 · 100 Level · Sciences</small>
+        </div>
+        <span class="demo-fill">Use →</span>
+      </div>
+
+      <div class="demo-item" onclick="fillDemo('242503021', 'student123', 'student')">
+        <div class="demo-info">
+          Fatima Bello
+          <small>242503021 · 200 Level · Law</small>
+        </div>
+        <span class="demo-fill">Use →</span>
+      </div>
+
+      <div class="demo-item" onclick="fillDemo('LEC/2024/001', 'lecturer123', 'lecturer')">
+        <div class="demo-info">
+          Dr. Rasheed Adeyemi
+          <small>LEC/2024/001 · Lecturer · Mathematics</small>
+        </div>
+        <span class="demo-fill">Use →</span>
+      </div>
+    </div>
+
+    <div class="login-footer">
+      Built by <strong style="color:var(--primary)">Folly Technologies (HAKNIM)</strong> · AFRETEC Innovation Challenge 2026
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+  <script src="index.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>

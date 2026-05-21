@@ -1,0 +1,35 @@
+/* ACADEX — Assignments Page */
+.nav-brand{font-family:'Clash Display',sans-serif;font-size:22px;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:10px}.nav-brand span{color:var(--accent)}.brand-logo-sm{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-size:14px;font-weight:700;color:white}.nav-user{display:flex;align-items:center;gap:12px}.nav-name{font-size:13px;font-weight:600;color:var(--ink)}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;gap:20px;flex-wrap:wrap}
+.assign-stats{display:flex;gap:12px}
+.astat{background:white;border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 20px;text-align:center}
+.astat-val{font-family:'Clash Display',sans-serif;font-size:24px;font-weight:700;color:var(--primary);display:block}
+.astat-label{font-size:11px;color:var(--ink-faint);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.assign-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.assign-tab{padding:9px 18px;border-radius:100px;font-size:13px;font-weight:600;color:var(--ink-muted);background:white;border:1.5px solid var(--border);cursor:pointer;transition:all .2s;font-family:'Satoshi',sans-serif}
+.assign-tab:hover{border-color:var(--primary);color:var(--primary)}
+.assign-tab.active{background:var(--primary);border-color:var(--primary);color:white}
+.assignments-list{display:flex;flex-direction:column;gap:14px}
+.assignment-card{background:white;border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:all .2s}
+.assignment-card:hover{box-shadow:var(--shadow-md)}
+.assignment-card.urgent{border-left:4px solid var(--danger)}
+.assignment-card.soon{border-left:4px solid var(--gold)}
+.assignment-card.ok{border-left:4px solid var(--accent)}
+.assignment-card.submitted{border-left:4px solid var(--accent);opacity:.8}
+.assignment-card.graded{border-left:4px solid var(--primary)}
+.assign-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:12px}
+.assign-card-left{flex:1}
+.assign-title{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.assign-course{font-size:13px;color:var(--ink-muted);font-weight:500}
+.assign-status{display:flex;gap:8px;align-items:center;flex-shrink:0;flex-wrap:wrap}
+.assign-card-body{font-size:13px;color:var(--ink-muted);line-height:1.6;margin-bottom:16px}
+.assign-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.assign-deadline{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.deadline-urgent{color:var(--danger)}
+.deadline-soon{color:var(--gold)}
+.deadline-ok{color:var(--accent)}
+.deadline-done{color:var(--ink-faint)}
+.assign-score{font-family:'Clash Display',sans-serif;font-size:18px;font-weight:700;color:var(--primary)}
+.upload-zone{display:flex;align-items:center;gap:10px;padding:12px 16px;border:2px dashed var(--border);border-radius:var(--radius-sm);cursor:pointer;font-size:13px;color:var(--ink-faint);transition:all .2s;margin-top:12px}
+.upload-zone:hover{border-color:var(--primary);color:var(--primary)}
+@media(max-width:768px){.nav-links{display:none}.assign-card-top{flex-direction:column}}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Course Materials</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="materials.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-100.html">🏠 Dashboard</a>
+      <a class="nav-link active" href="materials.html">📚 Materials</a>
+      <a class="nav-link" href="cbt.html">📋 CBT</a>
+      <a class="nav-link" href="onboarding.html">🧭 Guide</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link" href="dashboard-100.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="cbt.html"><span class="icon">📋</span> Take CBT Test</a>
+      <a class="sidebar-link" href="review.html"><span class="icon">🔍</span> Review Results</a>
+      <a class="sidebar-link" href="appeal.html"><span class="icon">⚖️</span> Submit Appeal</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link active" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <a class="sidebar-link" href="onboarding.html"><span class="icon">🧭</span> Student Guide</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="page-header animate-up">
+        <div>
+          <h1 class="page-title">📚 Course Materials</h1>
+          <p class="page-subtitle">Verified lecturer-uploaded resources — notes, outlines, and assignments in one place.</p>
+        </div>
+        <div class="materials-stats" id="materialsStats"></div>
+      </div>
+
+      <!-- Search & Filter -->
+      <div class="search-filter-bar animate-up delay-1">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search materials..." oninput="filterMaterials()">
+        </div>
+        <div class="filter-group">
+          <select class="form-select filter-select" id="courseFilter" onchange="filterMaterials()">
+            <option value="">All Courses</option>
+            <option value="MTH 101">MTH 101</option>
+            <option value="CHM 101">CHM 101</option>
+            <option value="PHY 101">PHY 101</option>
+            <option value="GST 101">GST 101</option>
+            <option value="BIO 101">BIO 101</option>
+          </select>
+          <select class="form-select filter-select" id="typeFilter" onchange="filterMaterials()">
+            <option value="">All Types</option>
+            <option value="PDF">PDF</option>
+            <option value="PPT">PowerPoint</option>
+            <option value="DOC">Word Doc</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Materials Grid -->
+      <div class="materials-grid animate-up delay-2" id="materialsGrid"></div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="empty-icon">📭</div>
+        <h3>No materials found</h3>
+        <p>Try a different search or filter.</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="materials.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

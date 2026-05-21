@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Review Results</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="brand-logo-sm">Ax</div>
+      Acad<span>Ex</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-100.html">🏠 Dashboard</a>
+      <a class="nav-link" href="cbt.html">📋 Take Test</a>
+      <a class="nav-link active" href="review.html">🔍 Review</a>
+      <a class="nav-link" href="appeal.html">⚖️ Appeal</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ======= MAIN ======= -->
+  <main class="review-main">
+
+    <!-- Score Hero -->
+    <div class="score-hero animate-up" id="scoreHero">
+      <div class="score-hero-left">
+        <div class="score-tag" id="scoreTag">Results Ready</div>
+        <h1 class="score-title" id="scoreTitle">MTH 101 — Introduction to Pure Mathematics</h1>
+        <p class="score-date" id="scoreDate">—</p>
+
+        <div class="score-meta-row">
+          <div class="score-meta-item">
+            <span class="score-meta-label">Correct</span>
+            <span class="score-meta-val correct" id="correctCount">—</span>
+          </div>
+          <div class="score-meta-item">
+            <span class="score-meta-label">Wrong</span>
+            <span class="score-meta-val wrong" id="wrongCount">—</span>
+          </div>
+          <div class="score-meta-item">
+            <span class="score-meta-label">Time Taken</span>
+            <span class="score-meta-val" id="timeTaken">—</span>
+          </div>
+          <div class="score-meta-item">
+            <span class="score-meta-label">Total Score</span>
+            <span class="score-meta-val" id="totalScore">—</span>
+          </div>
+        </div>
+
+        <div class="score-actions">
+          <a href="appeal.html" class="btn btn-outline-white btn-sm">⚖️ Submit Appeal</a>
+          <a href="cbt.html" class="btn btn-accent btn-sm">🔁 Retake Test</a>
+        </div>
+      </div>
+
+      <div class="score-ring-wrap">
+        <div class="score-ring" id="scoreRing">
+          <svg viewBox="0 0 120 120" class="ring-svg">
+            <circle cx="60" cy="60" r="52" class="ring-track"/>
+            <circle cx="60" cy="60" r="52" class="ring-fill" id="ringFill"
+              stroke-dasharray="327"
+              stroke-dashoffset="327"/>
+          </svg>
+          <div class="ring-center">
+            <div class="ring-percent" id="ringPercent">0%</div>
+            <div class="ring-label">Score</div>
+          </div>
+        </div>
+        <div class="score-grade" id="scoreGrade">—</div>
+      </div>
+    </div>
+
+    <!-- Performance Summary -->
+    <div class="perf-summary animate-up delay-1" id="perfSummary">
+      <div class="perf-card">
+        <div class="perf-icon">🎯</div>
+        <div class="perf-text" id="perfText">Loading performance summary...</div>
+      </div>
+    </div>
+
+    <!-- Review Header -->
+    <div class="review-header animate-up delay-2">
+      <div>
+        <h2 class="review-header-title">Detailed Answer Review</h2>
+        <p class="review-header-sub">Every question reviewed with AI-powered explanations</p>
+      </div>
+      <div class="review-filter">
+        <button class="filter-btn active" onclick="filterQuestions('all', this)">All</button>
+        <button class="filter-btn" onclick="filterQuestions('correct', this)">✅ Correct</button>
+        <button class="filter-btn" onclick="filterQuestions('wrong', this)">❌ Wrong</button>
+      </div>
+    </div>
+
+    <!-- Questions Review -->
+    <div class="questions-review" id="questionsReview">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Appeal CTA -->
+    <div class="appeal-cta animate-up">
+      <div class="appeal-cta-left">
+        <div class="appeal-cta-icon">⚖️</div>
+        <div>
+          <strong>Disagree with a result?</strong>
+          <p>If you believe a question was wrongly marked, you can submit a formal appeal to your lecturer.</p>
+        </div>
+      </div>
+      <a href="appeal.html" class="btn btn-primary">Submit Appeal →</a>
+    </div>
+
+  </main>
+
+  <!-- AI Explanation Modal -->
+  <div class="modal-overlay" id="aiModal">
+    <div class="modal ai-modal">
+      <div class="ai-modal-header">
+        <div class="ai-badge">🤖 AI Explanation</div>
+        <button class="btn btn-ghost btn-sm" onclick="closeAiModal()">✕ Close</button>
+      </div>
+      <div class="ai-question" id="aiQuestion">Question text here</div>
+      <div class="ai-answer-row">
+        <div class="ai-answer-item your">
+          <div class="ai-answer-label">Your Answer</div>
+          <div class="ai-answer-text" id="aiYourAnswer">—</div>
+        </div>
+        <div class="ai-answer-item correct">
+          <div class="ai-answer-label">Correct Answer</div>
+          <div class="ai-answer-text" id="aiCorrectAnswer">—</div>
+        </div>
+      </div>
+      <div class="ai-explanation-box">
+        <div class="ai-exp-label">📚 Explanation</div>
+        <div class="ai-exp-text" id="aiExpText">Loading...</div>
+      </div>
+      <div class="ai-modal-actions">
+        <a href="appeal.html" class="btn btn-outline btn-sm">⚖️ Appeal This Question</a>
+        <button class="btn btn-primary btn-sm" onclick="closeAiModal()">Got it ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="review.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>

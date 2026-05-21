@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Manage CBT</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="manage-cbt.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="lecturer-dashboard.html">🏠 Dashboard</a>
+      <a class="nav-link" href="upload-materials.html">📤 Upload</a>
+      <a class="nav-link active" href="manage-cbt.html">📋 CBT</a>
+      <a class="nav-link" href="appeals-manager.html">⚖️ Appeals</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">DR</div>
+      <span class="nav-name" id="navUserName">Lecturer</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Portal</div>
+      <a class="sidebar-link" href="lecturer-dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="upload-materials.html"><span class="icon">📤</span> Upload Materials</a>
+      <a class="sidebar-link active" href="manage-cbt.html"><span class="icon">📋</span> Manage CBT</a>
+      <a class="sidebar-link" href="appeals-manager.html"><span class="icon">⚖️</span> Appeals</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="page-header animate-up">
+        <div><h1 class="page-title">📋 Manage CBT Tests</h1><p class="page-subtitle">Create, monitor, and analyse student CBT performance.</p></div>
+        <button class="btn btn-primary" onclick="showCreateForm()">+ Create Test</button>
+      </div>
+
+      <!-- Create Form -->
+      <div class="card animate-up delay-1" id="createForm" style="display:none">
+        <div class="card-head"><h3 class="card-title">Create New CBT Test</h3><button class="btn btn-ghost btn-sm" onclick="hideCreateForm()">✕</button></div>
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">Test Title</label><input type="text" class="form-input" id="testTitle" placeholder="e.g. MTH 101 — Week 5 Quiz"></div>
+          <div class="form-group"><label class="form-label">Course</label>
+            <select class="form-select" id="testCourse"><option>MTH 101</option><option>MTH 201</option><option>MTH 301</option></select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label class="form-label">Duration (minutes)</label><input type="number" class="form-input" id="testDuration" value="30" min="5" max="180"></div>
+          <div class="form-group"><label class="form-label">Total Questions</label><input type="number" class="form-input" id="testQuestions" value="20" min="5" max="100"></div>
+        </div>
+        <button class="btn btn-primary" onclick="createTest()">Create Test</button>
+      </div>
+
+      <!-- Tests List -->
+      <div class="tests-list animate-up delay-2" id="testsList"></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="manage-cbt.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

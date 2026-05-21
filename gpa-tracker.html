@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — GPA Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="gpa-tracker.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-200.html">🏠 Dashboard</a>
+      <a class="nav-link" href="past-questions.html">📖 Past Questions</a>
+      <a class="nav-link active" href="gpa-tracker.html">📊 GPA</a>
+      <a class="nav-link" href="assignments.html">📝 Assignments</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link" href="dashboard-200.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="past-questions.html"><span class="icon">📖</span> Past Questions</a>
+      <a class="sidebar-link active" href="gpa-tracker.html"><span class="icon">📊</span> GPA Tracker</a>
+      <a class="sidebar-link" href="assignments.html"><span class="icon">📝</span> Assignments</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="page-header animate-up">
+        <div>
+          <h1 class="page-title">📊 GPA Tracker</h1>
+          <p class="page-subtitle">Calculate your GPA per semester and track your CGPA across your degree.</p>
+        </div>
+        <div class="cgpa-hero" id="cgpaHero">
+          <div class="cgpa-val" id="cgpaVal">3.85</div>
+          <div class="cgpa-label">Current CGPA</div>
+          <div class="cgpa-grade" id="cgpaGrade">2nd Class Upper</div>
+        </div>
+      </div>
+
+      <div class="gpa-layout animate-up delay-1">
+        <!-- Calculator -->
+        <div class="calc-col">
+          <div class="card">
+            <div class="card-head">
+              <h3 class="card-title">Semester GPA Calculator</h3>
+              <button class="btn btn-sm btn-outline" onclick="addCourse()">+ Add Course</button>
+            </div>
+            <div class="courses-table-wrap">
+              <table class="courses-table">
+                <thead>
+                  <tr><th>Course</th><th>Credit Units</th><th>Grade</th><th>Points</th><th></th></tr>
+                </thead>
+                <tbody id="coursesBody"></tbody>
+              </table>
+            </div>
+            <div class="calc-result" id="calcResult">
+              <div class="calc-result-item">
+                <span>Total Credit Units</span>
+                <strong id="totalUnits">0</strong>
+              </div>
+              <div class="calc-result-item">
+                <span>Semester GPA</span>
+                <strong id="semGPA" style="color:var(--primary);font-size:20px;">0.00</strong>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-full mt-16" onclick="saveSemester()">Save This Semester</button>
+          </div>
+        </div>
+
+        <!-- History & Grade Scale -->
+        <div class="history-col">
+          <div class="card">
+            <div class="card-head"><h3 class="card-title">Semester History</h3></div>
+            <div class="semester-history" id="semesterHistory"></div>
+          </div>
+
+          <div class="card grade-scale-card">
+            <div class="card-head"><h3 class="card-title">UNILAG Grade Scale</h3></div>
+            <table class="grade-table">
+              <thead><tr><th>Score</th><th>Grade</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td>70–100</td><td><span class="badge badge-accent">A</span></td><td>5.0</td></tr>
+                <tr><td>60–69</td><td><span class="badge badge-primary">B</span></td><td>4.0</td></tr>
+                <tr><td>50–59</td><td><span class="badge badge-gold">C</span></td><td>3.0</td></tr>
+                <tr><td>45–49</td><td><span class="badge" style="background:rgba(255,184,0,.1);color:#8C6400">D</span></td><td>2.0</td></tr>
+                <tr><td>40–44</td><td><span class="badge" style="background:rgba(255,77,79,.08);color:var(--danger)">E</span></td><td>1.0</td></tr>
+                <tr><td>0–39</td><td><span class="badge badge-danger">F</span></td><td>0.0</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="gpa-tracker.js"></script>
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — CBT Test</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="cbt.css">
+</head>
+<body>
+
+  <!-- ======= PRE-TEST SCREEN ======= -->
+  <div id="preTestScreen" class="screen active">
+    <div class="pre-nav">
+      <div class="nav-brand">
+        <div class="brand-logo-sm">Ax</div>
+        Acad<span>Ex</span>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="window.location.href='dashboard-100.html'">← Back to Dashboard</button>
+    </div>
+
+    <div class="pre-container">
+      <div class="pre-card animate-up">
+
+        <div class="pre-icon">📋</div>
+        <div class="badge badge-primary mb-16">MTH 101 — Mathematics</div>
+        <h1 class="pre-title">Introduction to Pure Mathematics</h1>
+        <p class="pre-sub">Read the instructions carefully before you begin. Once started, the timer cannot be paused.</p>
+
+        <div class="pre-meta-grid">
+          <div class="pre-meta-item">
+            <div class="pre-meta-icon">❓</div>
+            <div class="pre-meta-text">
+              <strong>5 Questions</strong>
+              <span>Multiple choice</span>
+            </div>
+          </div>
+          <div class="pre-meta-item">
+            <div class="pre-meta-icon">⏱</div>
+            <div class="pre-meta-text">
+              <strong>10 Minutes</strong>
+              <span>Time limit</span>
+            </div>
+          </div>
+          <div class="pre-meta-item">
+            <div class="pre-meta-icon">🎯</div>
+            <div class="pre-meta-text">
+              <strong>100 Marks</strong>
+              <span>20 marks each</span>
+            </div>
+          </div>
+          <div class="pre-meta-item">
+            <div class="pre-meta-icon">🔍</div>
+            <div class="pre-meta-text">
+              <strong>Review After</strong>
+              <span>Full answer review</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="instructions">
+          <div class="instructions-title">📌 Instructions</div>
+          <ul class="instructions-list">
+            <li>Select one answer per question.</li>
+            <li>You can navigate between questions freely.</li>
+            <li>Unanswered questions count as wrong.</li>
+            <li>After submission, you can review all answers with AI explanations.</li>
+            <li>If you believe a question is wrongly marked, you can appeal after review.</li>
+          </ul>
+        </div>
+
+        <div class="pre-student-info" id="preStudentInfo">
+          <!-- Populated by JS -->
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" onclick="startTest()">
+          Start Test Now →
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= TEST SCREEN ======= -->
+  <div id="testScreen" class="screen">
+
+    <!-- Test Nav -->
+    <div class="test-nav">
+      <div class="test-nav-left">
+        <div class="nav-brand">
+          <div class="brand-logo-sm">Ax</div>
+          Acad<span>Ex</span>
+        </div>
+        <div class="test-title-chip">MTH 101 — Introduction to Pure Mathematics</div>
+      </div>
+      <div class="test-nav-right">
+        <div class="timer-wrap" id="timerWrap">
+          <div class="timer-icon">⏱</div>
+          <div class="timer-display" id="timerDisplay">10:00</div>
+        </div>
+        <button class="btn btn-danger btn-sm" onclick="confirmSubmit()">Submit Test</button>
+      </div>
+    </div>
+
+    <!-- Test Layout -->
+    <div class="test-layout">
+
+      <!-- Question Panel -->
+      <div class="question-panel">
+
+        <!-- Progress -->
+        <div class="test-progress">
+          <div class="test-progress-info">
+            <span id="questionCounter">Question 1 of 5</span>
+            <span id="answeredCount">0 answered</span>
+          </div>
+          <div class="progress">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Question Card -->
+        <div class="question-card" id="questionCard">
+          <div class="q-badge" id="qBadge">Q1</div>
+          <div class="q-marks" id="qMarks">20 marks</div>
+          <div class="q-text" id="qText">Loading question...</div>
+
+          <div class="options-grid" id="optionsGrid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="q-nav">
+          <button class="btn btn-outline btn-sm" id="prevBtn" onclick="prevQuestion()" disabled>← Previous</button>
+          <div class="q-nav-center" id="qNavDots">
+            <!-- Dots populated by JS -->
+          </div>
+          <button class="btn btn-primary btn-sm" id="nextBtn" onclick="nextQuestion()">Next →</button>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <div class="test-sidebar">
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Question Map</div>
+          <div class="q-map" id="qMap">
+            <!-- Populated by JS -->
+          </div>
+          <div class="q-map-legend">
+            <div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
+            <div class="legend-item"><div class="legend-dot current"></div> Current</div>
+            <div class="legend-item"><div class="legend-dot unanswered"></div> Unanswered</div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-card-title">Test Info</div>
+          <div class="test-info-list">
+            <div class="test-info-row">
+              <span>Course</span>
+              <strong>MTH 101</strong>
+            </div>
+            <div class="test-info-row">
+              <span>Questions</span>
+              <strong>5</strong>
+            </div>
+            <div class="test-info-row">
+              <span>Total Marks</span>
+              <strong>100</strong>
+            </div>
+            <div class="test-info-row">
+              <span>Status</span>
+              <strong style="color:var(--accent)">In Progress</strong>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-danger btn-full" onclick="confirmSubmit()">
+          Submit Test
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= SUBMIT CONFIRM MODAL ======= -->
+  <div class="modal-overlay" id="submitModal">
+    <div class="modal">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title">Submit Test?</h3>
+      <p class="modal-body" id="submitModalBody">
+        You have answered 0 of 5 questions. Unanswered questions will be marked wrong.
+      </p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal()">Continue Test</button>
+        <button class="btn btn-primary" onclick="submitTest()">Yes, Submit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= TIME UP MODAL ======= -->
+  <div class="modal-overlay" id="timeUpModal">
+    <div class="modal">
+      <div class="modal-icon">⏰</div>
+      <h3 class="modal-title">Time's Up!</h3>
+      <p class="modal-body">Your test has been automatically submitted. Click below to see your results.</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-full" onclick="submitTest()">View My Results</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="cbt.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Submit Appeal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="appeal.css">
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <nav class="nav">
+    <div class="nav-brand">
+      <div class="brand-logo-sm">Ax</div>
+      Acad<span>Ex</span>
+    </div>
+    <div class="nav-links">
+      <a class="nav-link" href="dashboard-100.html">🏠 Dashboard</a>
+      <a class="nav-link" href="cbt.html">📋 CBT</a>
+      <a class="nav-link" href="review.html">🔍 Review</a>
+      <a class="nav-link active" href="appeal.html">⚖️ Appeal</a>
+    </div>
+    <div class="nav-user">
+      <div class="avatar" id="navAvatar">AB</div>
+      <span class="nav-name" id="navUserName">Student</span>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <!-- ======= LAYOUT ======= -->
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link" href="dashboard-100.html"><span class="icon">🏠</span> Dashboard</a>
+      <a class="sidebar-link" href="cbt.html"><span class="icon">📋</span> Take CBT Test</a>
+      <a class="sidebar-link" href="review.html"><span class="icon">🔍</span> Review Results</a>
+      <a class="sidebar-link active" href="appeal.html"><span class="icon">⚖️</span> Submit Appeal</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <a class="sidebar-link" href="onboarding.html"><span class="icon">🧭</span> Student Guide</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Page Header -->
+      <div class="page-header animate-up">
+        <div class="page-header-left">
+          <h1 class="page-title">⚖️ Submit an Appeal</h1>
+          <p class="page-subtitle">Formally challenge a question you believe was wrongly marked. Your lecturer will be notified.</p>
+        </div>
+        <div class="appeal-stats" id="appealStats">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Two Column Layout -->
+      <div class="appeal-layout">
+
+        <!-- Appeal Form -->
+        <div class="appeal-form-col">
+
+          <!-- Step 1: Select Test -->
+          <div class="step-card animate-up delay-1" id="step1">
+            <div class="step-header">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <div class="step-title">Select Test</div>
+                <div class="step-sub">Which test are you appealing?</div>
+              </div>
+              <div class="step-status" id="step1Status"></div>
+            </div>
+            <div class="step-body">
+              <div class="test-select-list" id="testSelectList">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Select Question -->
+          <div class="step-card animate-up delay-2" id="step2">
+            <div class="step-header">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <div class="step-title">Select Question</div>
+                <div class="step-sub">Which question do you want to appeal?</div>
+              </div>
+              <div class="step-status" id="step2Status"></div>
+            </div>
+            <div class="step-body">
+              <div class="question-select-list" id="questionSelectList">
+                <div class="step-placeholder">← Select a test first</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Question Preview -->
+          <div class="step-card animate-up delay-3" id="step3">
+            <div class="step-header">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <div class="step-title">Question Review</div>
+                <div class="step-sub">Confirm the question you are appealing</div>
+              </div>
+            </div>
+            <div class="step-body">
+              <div id="questionPreview">
+                <div class="step-placeholder">← Select a question first</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Reason -->
+          <div class="step-card animate-up delay-4" id="step4">
+            <div class="step-header">
+              <div class="step-number">4</div>
+              <div class="step-info">
+                <div class="step-title">Your Reason</div>
+                <div class="step-sub">Explain clearly why you believe this question was wrongly marked</div>
+              </div>
+              <div class="step-status" id="step4Status"></div>
+            </div>
+            <div class="step-body">
+              <div class="reason-type-grid" id="reasonTypeGrid">
+                <div class="reason-type" onclick="selectReasonType('wrong_answer', this)">
+                  <div class="reason-type-icon">❌</div>
+                  <div class="reason-type-label">Wrong Answer Key</div>
+                </div>
+                <div class="reason-type" onclick="selectReasonType('ambiguous', this)">
+                  <div class="reason-type-icon">🤔</div>
+                  <div class="reason-type-label">Ambiguous Question</div>
+                </div>
+                <div class="reason-type" onclick="selectReasonType('marking_error', this)">
+                  <div class="reason-type-icon">⚠️</div>
+                  <div class="reason-type-label">Marking Error</div>
+                </div>
+                <div class="reason-type" onclick="selectReasonType('other', this)">
+                  <div class="reason-type-icon">📝</div>
+                  <div class="reason-type-label">Other Reason</div>
+                </div>
+              </div>
+
+              <div class="form-group mt-16">
+                <label class="form-label">Detailed Explanation</label>
+                <textarea
+                  class="form-input"
+                  id="appealReason"
+                  rows="5"
+                  placeholder="Explain in detail why you believe this question was wrongly marked. Include any references, textbook pages, or logical reasoning that supports your appeal..."
+                  oninput="onReasonInput()"
+                ></textarea>
+                <div class="char-count" id="charCount">0 / 500 characters</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Supporting Evidence (Optional)</label>
+                <div class="upload-zone" onclick="AcadEx.showToast('File upload coming in Phase 2', 'info')">
+                  <div class="upload-icon">📎</div>
+                  <div class="upload-text">
+                    <strong>Attach a file</strong>
+                    <span>Textbook page, screenshot, or document (Phase 2)</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="submit-appeal-wrap animate-up delay-5">
+            <button class="btn btn-primary btn-full btn-lg" id="submitAppealBtn" onclick="submitAppeal()">
+              ⚖️ Submit Appeal to Lecturer
+            </button>
+            <p class="submit-note">Your lecturer will be notified and must respond within 5 working days.</p>
+          </div>
+
+        </div>
+
+        <!-- Right Column -->
+        <div class="appeal-right-col">
+
+          <!-- Appeal Guidelines -->
+          <div class="card animate-up delay-1">
+            <div class="card-head">
+              <h3 class="card-title">📌 Appeal Guidelines</h3>
+            </div>
+            <div class="guideline-list">
+              <div class="guideline-item">
+                <div class="guideline-icon success">✓</div>
+                <div class="guideline-text">You can only appeal questions from tests you sat for</div>
+              </div>
+              <div class="guideline-item">
+                <div class="guideline-icon success">✓</div>
+                <div class="guideline-text">Provide clear, academic reasons for your appeal</div>
+              </div>
+              <div class="guideline-item">
+                <div class="guideline-icon success">✓</div>
+                <div class="guideline-text">Your lecturer must respond within 5 working days</div>
+              </div>
+              <div class="guideline-item">
+                <div class="guideline-icon danger">✗</div>
+                <div class="guideline-text">Do not submit frivolous or repeated appeals</div>
+              </div>
+              <div class="guideline-item">
+                <div class="guideline-icon danger">✗</div>
+                <div class="guideline-text">Appeals cannot change your grade retroactively without lecturer approval</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- My Appeals -->
+          <div class="card animate-up delay-2">
+            <div class="card-head">
+              <h3 class="card-title">My Appeals</h3>
+              <span class="badge badge-primary" id="appealCount">0</span>
+            </div>
+            <div class="appeals-history" id="appealsHistory">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Appeal Process -->
+          <div class="card process-card animate-up delay-3">
+            <div class="card-head">
+              <h3 class="card-title">How It Works</h3>
+            </div>
+            <div class="process-steps">
+              <div class="process-step">
+                <div class="process-dot active">1</div>
+                <div class="process-line"></div>
+                <div class="process-text">You submit your appeal with reasons</div>
+              </div>
+              <div class="process-step">
+                <div class="process-dot">2</div>
+                <div class="process-line"></div>
+                <div class="process-text">Lecturer receives notification</div>
+              </div>
+              <div class="process-step">
+                <div class="process-dot">3</div>
+                <div class="process-line"></div>
+                <div class="process-text">Lecturer reviews and responds</div>
+              </div>
+              <div class="process-step">
+                <div class="process-dot">4</div>
+                <div class="process-line last"></div>
+                <div class="process-text">You receive decision + updated score if approved</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal success-modal">
+      <div class="success-anim">⚖️</div>
+      <h3 class="modal-title">Appeal Submitted!</h3>
+      <p class="modal-body">Your appeal has been sent to your lecturer. You will be notified via WhatsApp when they respond. Expected response: within 5 working days.</p>
+      <div class="appeal-ref" id="appealRef">REF: AX-2026-001</div>
+      <div class="modal-actions" style="justify-content: center;">
+        <button class="btn btn-primary" onclick="closeSuccessModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="appeal.js"></script>
+
+  <script src="nav.js"></script>
+</body>
+</html>
