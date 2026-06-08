@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AcadEx — Review Results</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="icons.css">
   <link rel="stylesheet" href="review.css">
+  <link rel="stylesheet" href="accessibility.css">
+  <link rel="stylesheet" href="darkmode.css">
 </head>
 <body>
 
@@ -17,10 +23,10 @@
       Acad<span>Ex</span>
     </div>
     <div class="nav-links">
-      <a class="nav-link" href="dashboard-100.html">🏠 Dashboard</a>
-      <a class="nav-link" href="cbt.html">📋 Take Test</a>
-      <a class="nav-link active" href="review.html">🔍 Review</a>
-      <a class="nav-link" href="appeal.html">⚖️ Appeal</a>
+      <a class="nav-link" href="dashboard-100.html">Dashboard</a>
+      <a class="nav-link" href="cbt.html">Take Test</a>
+      <a class="nav-link active" href="review.html">Review</a>
+      <a class="nav-link" href="appeal.html">Appeal</a>
     </div>
     <div class="nav-user">
       <div class="avatar" id="navAvatar">AB</div>
@@ -59,7 +65,7 @@
         </div>
 
         <div class="score-actions">
-          <a href="appeal.html" class="btn btn-outline-white btn-sm">⚖️ Submit Appeal</a>
+          <a href="appeal.html" class="btn btn-outline-white btn-sm">Submit Appeal Appeal</a>
           <a href="cbt.html" class="btn btn-accent btn-sm">🔁 Retake Test</a>
         </div>
       </div>
@@ -144,7 +150,7 @@
         <div class="ai-exp-text" id="aiExpText">Loading...</div>
       </div>
       <div class="ai-modal-actions">
-        <a href="appeal.html" class="btn btn-outline btn-sm">⚖️ Appeal This Question</a>
+        <a href="appeal.html" class="btn btn-outline btn-sm">Appeal This Question</a>
         <button class="btn btn-primary btn-sm" onclick="closeAiModal()">Got it ✓</button>
       </div>
     </div>
@@ -154,5 +160,7 @@
   <script src="review.js"></script>
 
   <script src="nav.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="darkmode.js"></script>
 </body>
 </html>

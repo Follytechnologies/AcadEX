@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Create Account</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="accessibility.css">
+  <link rel="stylesheet" href="darkmode.css">
+</head>
+<body>
+
+  <div class="signup-layout">
+
+    <!-- Left Panel -->
+    <div class="signup-left">
+      <div class="signup-left-inner">
+        <a href="landing.html" class="signup-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12,19 5,12 12,5"/></svg>
+          Back to Home
+        </a>
+
+        <div class="signup-brand">
+          <div class="signup-logo">Ax</div>
+          <span class="signup-brand-name">Acad<em>Ex</em></span>
+        </div>
+
+        <h1 class="signup-left-title">Join thousands of UNILAG students taking control of their academics.</h1>
+
+        <div class="signup-benefits">
+          <div class="signup-benefit">
+            <div class="signup-benefit-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            Review every CBT answer after your exam
+          </div>
+          <div class="signup-benefit">
+            <div class="signup-benefit-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            Get AI explanations for every wrong answer
+          </div>
+          <div class="signup-benefit">
+            <div class="signup-benefit-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            Formally challenge wrong marks
+          </div>
+          <div class="signup-benefit">
+            <div class="signup-benefit-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            Access verified course materials offline
+          </div>
+          <div class="signup-benefit">
+            <div class="signup-benefit-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+            </div>
+            100% free for all UNILAG students
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="signup-right">
+      <div class="signup-form-wrap">
+
+        <div class="signup-header">
+          <h2>Create Your Account</h2>
+          <p>Already have an account? <a href="login.html">Sign In</a></p>
+        </div>
+
+        <!-- Error -->
+        <div class="signup-error" id="signupError" style="display:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span id="signupErrorText">Error message</span>
+        </div>
+
+        <!-- Form -->
+        <div class="signup-form">
+          <div class="signup-form-group">
+            <label class="signup-label">Full Name</label>
+            <input type="text" class="signup-input" id="fullName" placeholder="e.g. Abdulhakeem Ahmad Folorunso">
+          </div>
+
+          <div class="signup-form-group">
+            <label class="signup-label">Matric Number</label>
+            <input type="text" class="signup-input" id="matricNumber" placeholder="e.g. 252604033" maxlength="20" oninput="onMatricInput(this.value)">
+            <div class="signup-level-preview" id="levelPreview" style="display:none">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+              <span id="levelText">Detected: 100 Level Student</span>
+            </div>
+          </div>
+
+          <div class="signup-form-group">
+            <label class="signup-label">Faculty</label>
+            <select class="signup-input signup-select" id="faculty">
+              <option value="">— Select your faculty —</option>
+              <option>Sciences</option>
+              <option>Engineering</option>
+              <option>Arts & Humanities</option>
+              <option>Social Sciences</option>
+              <option>Law</option>
+              <option>Education</option>
+              <option>Business Administration</option>
+              <option>Pharmacy</option>
+              <option>Basic Medical Sciences</option>
+              <option>Environmental Sciences</option>
+            </select>
+          </div>
+
+          <div class="signup-form-group">
+            <label class="signup-label">Department</label>
+            <input type="text" class="signup-input" id="department" placeholder="e.g. Mathematics">
+          </div>
+
+          <div class="signup-form-group">
+            <label class="signup-label">Password</label>
+            <div class="signup-password-wrap">
+              <input type="password" class="signup-input" id="password" placeholder="Choose a strong password">
+              <button type="button" class="signup-eye-btn" onclick="togglePassword('password', this)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength"></div>
+          </div>
+
+          <div class="signup-form-group">
+            <label class="signup-label">Confirm Password</label>
+            <div class="signup-password-wrap">
+              <input type="password" class="signup-input" id="confirmPassword" placeholder="Repeat your password">
+              <button type="button" class="signup-eye-btn" onclick="togglePassword('confirmPassword', this)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="signup-terms">
+            <input type="checkbox" id="termsCheck" class="signup-checkbox">
+            <label for="termsCheck">I agree that my data will be used solely for academic purposes on AcadEx</label>
+          </div>
+
+          <button class="signup-submit-btn" id="signupBtn" onclick="handleSignup()">
+            Create Account
+          </button>
+
+          <div class="signup-divider"><span>or</span></div>
+
+          <a href="login.html" class="signup-signin-link">Already have an account? Sign In</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Screen -->
+  <div class="signup-success" id="signupSuccess" style="display:none">
+    <div class="signup-success-card">
+      <div class="signup-success-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg>
+      </div>
+      <h2>Account Created!</h2>
+      <p>Welcome to AcadEx, <strong id="successName">Student</strong>. Your account has been set up successfully.</p>
+      <div class="signup-success-level" id="successLevel">100 Level · Sciences</div>
+      <a href="login.html" class="signup-success-btn">Sign In to Your Dashboard</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="signup.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="darkmode.js"></script>
+</body>
+</html>

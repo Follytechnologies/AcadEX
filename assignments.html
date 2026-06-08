@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AcadEx — Assignments</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="icons.css">
   <link rel="stylesheet" href="assignments.css">
+  <link rel="stylesheet" href="accessibility.css">
+  <link rel="stylesheet" href="darkmode.css">
 </head>
 <body>
   <nav class="nav">
     <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
     <div class="nav-links">
-      <a class="nav-link" href="dashboard-200.html">🏠 Dashboard</a>
-      <a class="nav-link" href="past-questions.html">📖 Past Questions</a>
-      <a class="nav-link" href="gpa-tracker.html">📊 GPA</a>
-      <a class="nav-link active" href="assignments.html">📝 Assignments</a>
+      <a class="nav-link" href="dashboard-200.html">Dashboard</a>
+      <a class="nav-link" href="past-questions.html">Past Questions</a>
+      <a class="nav-link" href="gpa-tracker.html">GPA</a>
+      <a class="nav-link active" href="assignments.html">Assignments</a>
     </div>
     <div class="nav-user">
       <div class="avatar" id="navAvatar">AB</div>
@@ -27,20 +33,20 @@
   <div class="layout">
     <aside class="sidebar">
       <div class="sidebar-section">Main</div>
-      <a class="sidebar-link" href="dashboard-200.html"><span class="icon">🏠</span> Dashboard</a>
-      <a class="sidebar-link" href="past-questions.html"><span class="icon">📖</span> Past Questions</a>
-      <a class="sidebar-link" href="gpa-tracker.html"><span class="icon">📊</span> GPA Tracker</a>
-      <a class="sidebar-link active" href="assignments.html"><span class="icon">📝</span> Assignments</a>
+      <a class="sidebar-link" href="dashboard-200.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></span> Dashboard</a>
+      <a class="sidebar-link" href="past-questions.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></span> Past Questions</a>
+      <a class="sidebar-link" href="gpa-tracker.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> GPA Tracker</a>
+      <a class="sidebar-link active" href="assignments.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span> Assignments</a>
       <div class="sidebar-section">Learning</div>
-      <a class="sidebar-link" href="materials.html"><span class="icon">📚</span> Course Materials</a>
+      <a class="sidebar-link" href="materials.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> Course Materials</a>
       <div class="sidebar-section">Account</div>
-      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon">🚪</span> Sign Out</a>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span> Sign Out</a>
     </aside>
 
     <main class="main">
       <div class="page-header animate-up">
         <div>
-          <h1 class="page-title">📝 Assignments</h1>
+          <h1 class="page-title">Assignments</h1>
           <p class="page-subtitle">Submit your assignments and track deadlines in one place.</p>
         </div>
         <div class="assign-stats" id="assignStats"></div>
@@ -81,5 +87,7 @@
   <script src="app.js"></script>
   <script src="assignments.js"></script>
   <script src="nav.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="darkmode.js"></script>
 </body>
 </html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — Transparent Learning for Every UNILAG Student</title>
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+  <!-- ======= NAV ======= -->
+  <nav class="l-nav" id="lNav">
+    <div class="l-nav-inner">
+      <div class="l-brand">
+        <div class="l-brand-logo">Ax</div>
+        <span class="l-brand-name">Acad<em>Ex</em></span>
+      </div>
+      <div class="l-nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#competition">About</a>
+      </div>
+      <div class="l-nav-actions">
+        <a href="index.html" class="l-btn-ghost">Sign In</a>
+        <a href="signup.html" class="l-btn-primary">Get Started</a>
+      </div>
+      <button class="l-hamburger" id="lHamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="l-mobile-menu" id="lMobileMenu">
+      <a href="#features" onclick="toggleMobileMenu()">Features</a>
+      <a href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
+      <a href="#competition" onclick="toggleMobileMenu()">About</a>
+      <a href="index.html" class="l-btn-ghost-mobile">Sign In</a>
+      <a href="signup.html" class="l-btn-primary-mobile">Get Started Free</a>
+    </div>
+  </nav>
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Built for UNILAG Students · AFRETEC Innovation Challenge 2026
+      </div>
+
+      <h1 class="hero-title">
+        Your Academic Life,<br>
+        <span class="hero-title-accent">Finally Transparent.</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        AcadEx gives every UNILAG student the power to review CBT answers,
+        challenge wrong marks with AI-backed explanations, and access verified
+        course materials — all in one platform built from the inside.
+      </p>
+
+      <div class="hero-actions">
+        <a href="signup.html" class="hero-cta-primary">
+          Get Started Free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </a>
+        <a href="index.html" class="hero-cta-secondary">
+          Sign In to Dashboard
+        </a>
+        <button onclick="tryDemo()" class="hero-cta-secondary" style="background:rgba(0,201,167,.12);border-color:rgba(0,201,167,.4);color:#009F85;font-weight:600">
+          ▶ Try Live Demo
+        </button>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-val">57,000+</span>
+          <span class="hero-stat-label">UNILAG Students</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">100L–500L</span>
+          <span class="hero-stat-label">All Levels Served</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-val">100% Free</span>
+          <span class="hero-stat-label">For All Students</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+      <div class="mockup-window">
+        <div class="mockup-bar">
+          <span class="mockup-dot red"></span>
+          <span class="mockup-dot yellow"></span>
+          <span class="mockup-dot green"></span>
+          <span class="mockup-url">acadex.unilag.edu.ng</span>
+        </div>
+        <div class="mockup-content">
+          <div class="mockup-score-card">
+            <div class="mockup-score-top">
+              <div class="mockup-score-label">MTH 101 — Result</div>
+              <div class="mockup-score-badge">Reviewed</div>
+            </div>
+            <div class="mockup-score-ring">
+              <svg viewBox="0 0 80 80">
+                <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="6"/>
+                <circle cx="40" cy="40" r="34" fill="none" stroke="#00C9A7" stroke-width="6"
+                  stroke-dasharray="213" stroke-dashoffset="53" stroke-linecap="round"
+                  transform="rotate(-90 40 40)"/>
+              </svg>
+              <div class="mockup-score-val">75%</div>
+            </div>
+          </div>
+          <div class="mockup-question">
+            <div class="mockup-q-head">
+              <span class="mockup-q-num">Q3</span>
+              <span class="mockup-q-wrong">Wrong</span>
+            </div>
+            <div class="mockup-q-text">What is lim(x→0) [sin(x)/x]?</div>
+            <div class="mockup-answers">
+              <div class="mockup-answer your">
+                <span class="mockup-answer-label">You answered</span>
+                <span class="mockup-answer-val">B. 0</span>
+              </div>
+              <div class="mockup-answer correct">
+                <span class="mockup-answer-label">Correct answer</span>
+                <span class="mockup-answer-val">C. 1</span>
+              </div>
+            </div>
+            <div class="mockup-ai-box">
+              <div class="mockup-ai-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+                AI Explanation
+              </div>
+              <div class="mockup-ai-text">This is a fundamental limit. As x→0, sin(x)/x approaches 1. Use the squeeze theorem to prove it...</div>
+            </div>
+          </div>
+          <div class="mockup-appeal-btn">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9-3 9 3"/><path d="M3 18l9-3 9 3"/></svg>
+            Appeal This Question
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FEATURES ======= -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-tag">What We Built</div>
+      <h2 class="section-title">Everything a UNILAG Student Needs</h2>
+      <p class="section-sub">From CBT transparency to verified materials — AcadEx covers every gap in your academic life.</p>
+
+      <div class="features-grid">
+
+        <div class="feature-card feature-card-large">
+          <div class="feature-card-icon" style="background: rgba(0,201,167,0.12)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+          </div>
+          <h3 class="feature-title">Transparent CBT Assessment</h3>
+          <p class="feature-desc">After every test, see exactly what you answered, what the correct answer was, and receive an AI-powered explanation of why you were wrong. No more guessing.</p>
+          <div class="feature-tag">100 Level</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background: rgba(255,184,0,0.1)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9-3 9 3"/><path d="M3 18l9-3 9 3"/></svg>
+          </div>
+          <h3 class="feature-title">Formal Appeal System</h3>
+          <p class="feature-desc">Challenge any wrong mark directly to your lecturer. First of its kind in Nigerian university CBT systems.</p>
+          <div class="feature-tag">Signature Feature</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background: rgba(26,60,110,0.08)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1A3C6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          </div>
+          <h3 class="feature-title">Verified Past Questions</h3>
+          <p class="feature-desc">Download past questions organized by course, semester, and year. No more WhatsApp forwarding of wrong documents.</p>
+          <div class="feature-tag">200L & Above</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background: rgba(0,201,167,0.08)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 class="feature-title">GPA Tracker</h3>
+          <p class="feature-desc">Calculate your semester GPA, track CGPA trends, and always know exactly where you stand academically.</p>
+          <div class="feature-tag">All Levels</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card-icon" style="background: rgba(255,77,79,0.07)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF4D4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <h3 class="feature-title">Offline Material Access</h3>
+          <p class="feature-desc">Download lecturer-verified notes, outlines, and assignments. Access them anywhere — even without internet.</p>
+          <div class="feature-tag">Inclusivity</div>
+        </div>
+
+        <div class="feature-card feature-card-large">
+          <div class="feature-card-icon" style="background: rgba(26,60,110,0.06)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2557A7" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3 class="feature-title">Full Lecturer Portal</h3>
+          <p class="feature-desc">Lecturers upload materials, create CBT tests, monitor student performance, and respond to appeals — all from one dashboard.</p>
+          <div class="feature-tag">For Lecturers</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= HOW IT WORKS ======= -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="section-inner">
+      <div class="section-tag">The Flow</div>
+      <h2 class="section-title">How AcadEx Works</h2>
+      <p class="section-sub">Log in with your UNILAG matric number. The system automatically detects your level and gives you the right dashboard.</p>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h3>Log In</h3>
+          <p>Enter your matric number. AcadEx reads your admission year and automatically routes you to your correct level dashboard.</p>
+        </div>
+        <div class="step-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/></svg>
+          </div>
+          <h3>Take Your Test</h3>
+          <p>100 Level students take CBT tests directly on the platform. Navigate freely, answer at your pace, submit when ready.</p>
+        </div>
+        <div class="step-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <h3>Review Your Results</h3>
+          <p>See every answer. Get AI explanations for what you got wrong. Understand your mistakes before the next test.</p>
+        </div>
+        <div class="step-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00C9A7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9-3 9 3"/><path d="M3 18l9-3 9 3"/></svg>
+          </div>
+          <h3>Appeal If Needed</h3>
+          <p>Disagree with a result? Submit a formal appeal with your reasoning. Your lecturer receives it and must respond within 5 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= AFRETEC COMPETITION SECTION ======= -->
+  <section class="competition" id="competition">
+    <div class="section-inner">
+      <div class="competition-card">
+        <div class="competition-left">
+          <div class="competition-tag">AFRETEC UNILAG 2026</div>
+          <h2 class="competition-title">Built by Students,<br>For Students.</h2>
+          <p class="competition-desc">
+            AcadEx was created for the AFRETEC UNILAG Inclusive Education Innovation Challenge 2026,
+            themed <em>"Digitally Enabled Inclusive Education — Expanding Access, Equity, and Opportunity for All."</em>
+          </p>
+          <p class="competition-desc">
+            We are two 100 Level students at UNILAG. We built AcadEx because we live this problem every day.
+            When we submitted our first CBT exam, we couldn't see what we answered. We couldn't challenge a wrong mark.
+            We couldn't find the right materials without digging through WhatsApp groups.
+            AcadEx is our answer to that.
+          </p>
+          <div class="competition-team">
+            <div class="competition-member">
+              <div class="competition-avatar">AH</div>
+              <div class="competition-member-info">
+                <strong>Abdulhakeem Ahmad Folorunso</strong>
+                <span>Mathematics, 100L · Team Lead</span>
+              </div>
+            </div>
+            <div class="competition-member">
+              <div class="competition-avatar">BA</div>
+              <div class="competition-member-info">
+                <strong>Bakare Abdulkareem Abdulmuiz</strong>
+                <span>Pharmacy, 100L · Team Member</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="competition-right">
+          <div class="competition-stats-grid">
+            <div class="competition-stat">
+              <div class="competition-stat-val">6/6</div>
+              <div class="competition-stat-label">Focus Areas Covered</div>
+            </div>
+            <div class="competition-stat">
+              <div class="competition-stat-val">15</div>
+              <div class="competition-stat-label">Pages Built</div>
+            </div>
+            <div class="competition-stat">
+              <div class="competition-stat-val">3</div>
+              <div class="competition-stat-label">User Types Served</div>
+            </div>
+            <div class="competition-stat">
+              <div class="competition-stat-val">₦0</div>
+              <div class="competition-stat-label">Cost to Students</div>
+            </div>
+          </div>
+          <div class="competition-problem-box">
+            <div class="competition-problem-title">The Problem We Solve</div>
+            <p>No Nigerian university CBT system currently lets students review their answers, receive AI explanations, or formally challenge a marking error. AcadEx is the first platform to do all three.</p>
+          </div>
+          <div class="competition-powered">
+            <span>Powered by</span>
+            <strong>Claude AI (Anthropic)</strong>
+            <span>&</span>
+            <strong>Folly Technologies</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= CTA ======= -->
+  <section class="cta-section">
+    <div class="section-inner">
+      <div class="cta-card">
+        <div class="cta-orb cta-orb-1"></div>
+        <div class="cta-orb cta-orb-2"></div>
+        <h2 class="cta-title">Ready to Take Control of Your Academics?</h2>
+        <p class="cta-sub">Join thousands of UNILAG students who deserve transparency, fairness, and better tools.</p>
+        <div class="cta-actions">
+          <a href="signup.html" class="hero-cta-primary">Create Free Account</a>
+          <a href="index.html" class="hero-cta-secondary" style="color:white;border-color:rgba(255,255,255,0.3)">Sign In</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= FOOTER ======= -->
+  <footer class="l-footer">
+    <div class="section-inner">
+      <div class="l-footer-inner">
+        <div class="l-footer-brand">
+          <div class="l-brand-logo" style="width:32px;height:32px;font-size:13px">Ax</div>
+          <span class="l-brand-name" style="font-size:18px">Acad<em>Ex</em></span>
+        </div>
+        <div class="l-footer-links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#competition">About</a>
+          <a href="index.html">Sign In</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+        <div class="l-footer-copy">
+          Built by <strong>Folly Technologies (HAKNIM)</strong> · AFRETEC UNILAG Innovation Challenge 2026
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="landing.js"></script>
+  <script>
+  // ---- DEMO MODE: One-click login for judges ----
+  function tryDemo() {
+    // Pre-load a demo session
+    const demoUser = {
+      matricNumber: '252604033',
+      name: 'Abdulhakeem Ahmad Folorunso',
+      role: 'student',
+      faculty: 'Sciences',
+      department: 'Mathematics',
+      email: 'abdulhakeem@unilag.edu.ng',
+      level: 100,
+      levelLabel: '100 Level'
+    };
+    AcadEx.saveSession(demoUser);
+    window.location.href = 'dashboard-100.html';
+  }
+
+  // PWA: Register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  </script>
+</body>
+</html>

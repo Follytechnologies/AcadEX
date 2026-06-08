@@ -1,0 +1,428 @@
+/* ============================================
+   ACADEX — Accessibility Styles
+   accessibility.css
+   ============================================ */
+
+/* ============ ACCESSIBILITY TOGGLE BUTTON ============ */
+.a11y-toggle {
+  position: fixed;
+  bottom: 88px;
+  right: 20px;
+  z-index: 500;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(26,60,110,0.3);
+  transition: all 0.2s;
+}
+
+.a11y-toggle:hover {
+  background: var(--primary-light);
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(26,60,110,0.4);
+}
+
+.a11y-toggle svg {
+  width: 22px;
+  height: 22px;
+  stroke: white;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============ ACCESSIBILITY PANEL ============ */
+.a11y-panel {
+  position: fixed;
+  bottom: 148px;
+  right: 20px;
+  z-index: 499;
+  width: 280px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(26,60,110,0.16);
+  padding: 20px;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.a11y-panel.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.a11y-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.a11y-panel-title {
+  font-family: 'Clash Display', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.a11y-panel-subtitle {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+/* ============ FEATURE ROWS ============ */
+.a11y-feature {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.a11y-feature:last-of-type {
+  border-bottom: none;
+}
+
+.a11y-feature-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.a11y-feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.a11y-feature-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.a11y-feature-text strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1px;
+}
+
+.a11y-feature-text span {
+  font-size: 11px;
+  color: var(--ink-faint);
+}
+
+/* ============ TOGGLE SWITCH ============ */
+.a11y-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.a11y-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.a11y-switch-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--border);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.a11y-switch-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.a11y-switch input:checked + .a11y-switch-slider {
+  background: var(--accent);
+}
+
+.a11y-switch input:checked + .a11y-switch-slider::before {
+  transform: translateX(20px);
+}
+
+/* ============ FONT SIZE CONTROLS ============ */
+.a11y-font-controls {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.a11y-font-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Clash Display', sans-serif;
+  font-weight: 700;
+  color: var(--ink-muted);
+  transition: all 0.2s;
+}
+
+.a11y-font-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: white;
+}
+
+.a11y-font-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.a11y-font-btn.small { font-size: 11px; }
+.a11y-font-btn.medium { font-size: 13px; }
+.a11y-font-btn.large { font-size: 16px; }
+
+/* ============ TTS STATUS ============ */
+.a11y-tts-status {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  display: none;
+  margin-top: 4px;
+}
+
+.a11y-tts-status.speaking {
+  display: block;
+  animation: pulse-text 1s infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ============ HIGH CONTRAST MODE ============ */
+body.high-contrast {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .nav,
+body.high-contrast .sidebar,
+body.high-contrast .card,
+body.high-contrast .stat-card,
+body.high-contrast .quick-card,
+body.high-contrast .step-card,
+body.high-contrast .option-item,
+body.high-contrast .test-item,
+body.high-contrast .guide-card,
+body.high-contrast .assignment-card,
+body.high-contrast .appeal-mgr-card,
+body.high-contrast .material-card,
+body.high-contrast .pq-card,
+body.high-contrast .review-card,
+body.high-contrast .mockup-window,
+body.high-contrast .welcome-banner,
+body.high-contrast .lec-welcome,
+body.high-contrast .onboarding-hero {
+  background: #1A1A1A !important;
+  border-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .page-title,
+body.high-contrast .page-subtitle,
+body.high-contrast .card-title,
+body.high-contrast .stat-label,
+body.high-contrast .stat-sub,
+body.high-contrast .text-muted,
+body.high-contrast .nav-name,
+body.high-contrast .q-text,
+body.high-contrast .feature-desc,
+body.high-contrast .guide-card-desc,
+body.high-contrast .assign-card-body,
+body.high-contrast p,
+body.high-contrast span,
+body.high-contrast label {
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .stat-value,
+body.high-contrast .nav-brand,
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3 {
+  color: #00FF94 !important;
+}
+
+body.high-contrast .sidebar-link {
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .sidebar-link.active,
+body.high-contrast .sidebar-link:hover {
+  background: #333333 !important;
+  color: #00FF94 !important;
+}
+
+body.high-contrast .btn-primary,
+body.high-contrast .btn-accent {
+  background: #00FF94 !important;
+  color: #000000 !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast .btn-outline {
+  background: transparent !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+body.high-contrast .form-input,
+body.high-contrast .form-select,
+body.high-contrast .search-input,
+body.high-contrast .course-input,
+body.high-contrast .course-select {
+  background: #222222 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+body.high-contrast .badge {
+  border: 1px solid #FFFFFF !important;
+}
+
+body.high-contrast .progress-bar,
+body.high-contrast .progress {
+  background: #333333 !important;
+}
+
+body.high-contrast .a11y-panel {
+  background: #1A1A1A !important;
+  border-color: #FFFFFF !important;
+}
+
+body.high-contrast .a11y-panel-title,
+body.high-contrast .a11y-feature-text strong {
+  color: #FFFFFF !important;
+}
+
+body.high-contrast .a11y-feature-text span {
+  color: #AAAAAA !important;
+}
+
+body.high-contrast .table-wrap,
+body.high-contrast table {
+  background: #1A1A1A !important;
+}
+
+body.high-contrast th {
+  background: #333333 !important;
+  color: #FFFFFF !important;
+}
+
+body.high-contrast td {
+  color: #FFFFFF !important;
+  border-color: #333333 !important;
+}
+
+body.high-contrast tr:hover td {
+  background: #2A2A2A !important;
+}
+
+body.high-contrast .main {
+  background: #000000 !important;
+}
+
+/* ============ FONT SIZE MODES ============ */
+body.font-small { font-size: 13px !important; }
+body.font-medium { font-size: 15px !important; }
+body.font-large { font-size: 18px !important; }
+
+body.font-large .page-title { font-size: 34px !important; }
+body.font-large .card-title { font-size: 20px !important; }
+body.font-large .stat-value { font-size: 38px !important; }
+body.font-large p, body.font-large span, body.font-large label, body.font-large td { font-size: 18px !important; }
+body.font-large .btn { font-size: 17px !important; padding: 16px 32px !important; }
+body.font-large .sidebar-link { font-size: 16px !important; }
+body.font-large .q-text { font-size: 22px !important; }
+body.font-large .option-text { font-size: 18px !important; }
+
+body.font-small .page-title { font-size: 22px !important; }
+body.font-small .stat-value { font-size: 24px !important; }
+
+/* ============ FOCUS INDICATORS (keyboard nav) ============ */
+body.keyboard-nav *:focus {
+  outline: 3px solid #FFB800 !important;
+  outline-offset: 3px !important;
+}
+
+/* ============ READING LINE ============ */
+.a11y-reading-line {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 184, 0, 0.6);
+  z-index: 9999;
+  pointer-events: none;
+  display: none;
+}
+
+body.reading-guide .a11y-reading-line {
+  display: block;
+}
+
+/* ============ MOBILE ADJUSTMENT ============ */
+@media (max-width: 768px) {
+  .a11y-toggle {
+    bottom: 80px;
+    right: 16px;
+  }
+
+  .a11y-panel {
+    right: 16px;
+    width: calc(100vw - 32px);
+    bottom: 140px;
+  }
+}

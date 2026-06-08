@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-storage-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcadEx — 400 Level Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="icons.css">
+  <link rel="stylesheet" href="dashboard-200.css">
+  <link rel="stylesheet" href="accessibility.css">
+  <link rel="stylesheet" href="darkmode.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-brand"><div class="brand-logo-sm">Ax</div>Acad<span>Ex</span></div>
+    <div class="nav-links">
+      <a class="nav-link active" href="dashboard-400.html">Home</a>
+      <a class="nav-link" href="past-questions.html">Past Questions</a>
+      <a class="nav-link" href="gpa-tracker.html">GPA</a>
+      <a class="nav-link" href="assignments.html">Assignments</a>
+      <a class="nav-link" href="materials.html">Materials</a>
+    </div>
+    <div class="nav-user">
+      <div class="level-chip" id="levelChip">400 Level</div>
+      <div class="nav-info">
+        <span class="nav-name" id="navUserName">Student</span>
+        <span class="nav-matric" id="navMatric">—</span>
+      </div>
+      <div class="avatar" id="navAvatar">AB</div>
+      <button class="btn btn-ghost btn-sm" onclick="AcadEx.logout()">Sign Out</button>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <a class="sidebar-link active" href="dashboard-400.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></span> Dashboard</a>
+      <a class="sidebar-link" href="past-questions.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></span> Past Questions</a>
+      <a class="sidebar-link" href="gpa-tracker.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> GPA Tracker</a>
+      <a class="sidebar-link" href="assignments.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span> Assignments</a>
+      <a class="sidebar-link" href="appeal.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9-3 9 3"/><path d="M3 18l9-3 9 3"/></svg></span> Submit Appeal</a>
+      <div class="sidebar-section">Learning</div>
+      <a class="sidebar-link" href="materials.html"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span> Course Materials</a>
+      <div class="sidebar-section">Account</div>
+      <a class="sidebar-link" href="#" onclick="AcadEx.logout()"><span class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span> Sign Out</a>
+    </aside>
+
+    <main class="main">
+      <div class="welcome-banner animate-up">
+        <div class="welcome-left">
+          <div class="welcome-tag" id="welcomeTag">400 Level · First Semester</div>
+          <h1 class="welcome-title">Welcome back, <span id="firstName">Student</span> 👋</h1>
+          <p class="welcome-sub" id="welcomeSub">You're halfway through! Keep your GPA strong — final year is closer than you think.</p>
+          <div class="welcome-actions">
+            <a href="past-questions.html" class="btn btn-accent btn-sm">Past Questions →</a>
+            <a href="gpa-tracker.html" class="btn btn-outline-white btn-sm">📊 Check GPA</a>
+          </div>
+        </div>
+        <div class="welcome-right">
+          <div class="gpa-display">
+            <div class="gpa-label">Current CGPA</div>
+            <div class="gpa-value" id="cgpaDisplay">—</div>
+            <div class="gpa-grade" id="cgpaGrade">Loading...</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid animate-up delay-1">
+        <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-label">CGPA</div><div class="stat-value" id="statCGPA">—</div><div class="stat-sub" id="statClassification">Loading</div></div>
+        <div class="stat-card"><div class="stat-icon">📖</div><div class="stat-label">Past Questions</div><div class="stat-value" id="statPQ">5</div><div class="stat-sub">Available</div></div>
+        <div class="stat-card"><div class="stat-icon">⚖️</div><div class="stat-label">Appeals</div><div class="stat-value" id="statAppeals">0</div><div class="stat-sub">Pending</div></div>
+        <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-label">Materials</div><div class="stat-value" id="statMaterials">5</div><div class="stat-sub">Available</div></div>
+      </div>
+
+      <!-- AI GPA Insight Banner -->
+      <div class="card animate-up delay-2" id="aiInsightCard" style="background:linear-gradient(135deg,rgba(26,60,110,.06),rgba(0,201,167,.06));border:1px solid rgba(26,60,110,.15)">
+        <div style="display:flex;align-items:flex-start;gap:12px">
+          <div style="font-size:28px">🤖</div>
+          <div style="flex:1">
+            <div style="font-weight:700;font-size:14px;color:var(--primary);margin-bottom:6px">AI Academic Advisor</div>
+            <div id="aiInsightText" style="font-size:13px;color:var(--ink-muted);line-height:1.6">Loading your personalized GPA insight...</div>
+          </div>
+          <button onclick="loadAIInsight()" style="font-size:11px;padding:6px 12px;border-radius:8px;background:var(--primary);color:white;border:none;cursor:pointer;white-space:nowrap;font-family:inherit">Refresh ↻</button>
+        </div>
+      </div>
+
+      <div class="two-col animate-up delay-3">
+        <div class="card">
+          <div class="card-head"><h3 class="card-title">Quick Actions</h3></div>
+          <div class="quick-actions-list">
+            <div class="quick-card" onclick="window.location.href='past-questions.html'">
+              <div class="quick-icon" style="background:rgba(26,60,110,.08)">📖</div>
+              <div class="quick-text"><strong>Past Questions</strong><span>Download by course & year</span></div>
+              <span class="quick-arrow">→</span>
+            </div>
+            <div class="quick-card" onclick="window.location.href='gpa-tracker.html'">
+              <div class="quick-icon" style="background:rgba(0,201,167,.08)">📊</div>
+              <div class="quick-text"><strong>GPA Tracker</strong><span>Calculate & predict your CGPA</span></div>
+              <span class="quick-arrow">→</span>
+            </div>
+            <div class="quick-card" onclick="window.location.href='appeal.html'">
+              <div class="quick-icon" style="background:rgba(255,184,0,.1)">⚖️</div>
+              <div class="quick-text"><strong>Submit Appeal</strong><span>Challenge a wrong mark</span></div>
+              <span class="quick-arrow">→</span>
+            </div>
+            <div class="quick-card" onclick="window.location.href='materials.html'">
+              <div class="quick-icon" style="background:rgba(255,77,79,.06)">📚</div>
+              <div class="quick-text"><strong>Course Materials</strong><span>Verified notes & outlines</span></div>
+              <span class="quick-arrow">→</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><h3 class="card-title">CGPA Progress</h3></div>
+          <div id="cgpaProgressSection">
+            <canvas id="cgpaChart" height="200"></canvas>
+          </div>
+          <div style="margin-top:12px;text-align:center">
+            <a href="gpa-tracker.html" style="font-size:12px;color:var(--primary);text-decoration:none">View Full GPA Tracker →</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="ai.js"></script>
+  <script src="notifications.js"></script>
+  <script src="nav.js"></script>
+  <script src="accessibility.js"></script>
+  <script src="darkmode.js"></script>
+  <script>
+  const gradeClassification = (gpa) => {
+    if (gpa >= 4.50) return 'First Class';
+    if (gpa >= 3.50) return 'Second Class Upper';
+    if (gpa >= 2.40) return 'Second Class Lower';
+    if (gpa >= 1.50) return 'Third Class';
+    return 'Below Minimum';
+  };
+
+  window.addEventListener('load', async () => {
+    const user = AcadEx.requireAuth();
+    if (!user) return;
+    if (user.role !== 'student' || user.level < 300) { AcadEx.redirectByRole(user); return; }
+
+    // Update level tag
+    document.getElementById('welcomeTag').textContent = `${user.levelLabel} · First Semester`;
+    document.getElementById('levelChip').textContent = user.levelLabel;
+    document.getElementById('firstName').textContent = user.name.split(' ')[0];
+    document.getElementById('navUserName').textContent = user.name;
+    document.getElementById('navMatric').textContent = user.matricNumber;
+    document.getElementById('navAvatar').textContent = AcadEx.getInitials(user.name);
+
+    // Update welcome message per level
+    const msgs = {
+      300: "You're halfway through! Keep your GPA strong — final year is closer than you think.",
+      400: "Final year! Stay focused, finish strong, and make every assignment count.",
+      500: "Almost done — final semester push. Your degree is within reach!"
+    };
+    document.getElementById('welcomeSub').textContent = msgs[user.level] || msgs[300];
+
+    // Load GPA from localStorage
+    const semHistory = JSON.parse(localStorage.getItem('acadex_semesters') || '[]');
+    const lastGPA = semHistory.length > 0 ? semHistory[semHistory.length - 1].gpa : null;
+    if (lastGPA) {
+      document.getElementById('cgpaDisplay').textContent = lastGPA.toFixed(2);
+      document.getElementById('cgpaGrade').textContent = gradeClassification(lastGPA);
+      document.getElementById('statCGPA').textContent = lastGPA.toFixed(2);
+      document.getElementById('statClassification').textContent = gradeClassification(lastGPA);
+    } else {
+      document.getElementById('cgpaDisplay').textContent = 'N/A';
+      document.getElementById('cgpaGrade').textContent = 'No data yet';
+    }
+
+    // Stats
+    const appeals = JSON.parse(localStorage.getItem('acadex_appeals') || '[]');
+    document.getElementById('statAppeals').textContent = appeals.filter(a => a.status === 'pending').length;
+    document.getElementById('statMaterials').textContent = AcadEx.mockMaterials.length;
+
+    // Notifications
+    await Notifications.init(user);
+
+    // Chart
+    renderCGPAChart(semHistory);
+
+    // AI Insight (loads async)
+    loadAIInsight();
+
+    // Study chatbot
+    AcadExAI.injectChatWidget(`${user.level} Level student at UNILAG, ${user.faculty}, ${user.department}`);
+  });
+
+  function renderCGPAChart(history) {
+    const ctx = document.getElementById('cgpaChart').getContext('2d');
+    if (!history || history.length === 0) {
+      document.getElementById('cgpaProgressSection').innerHTML = '<div style="text-align:center;padding:24px;color:var(--ink-faint);font-size:13px">No GPA history yet.<br><a href="gpa-tracker.html" style="color:var(--primary)">Add your first semester →</a></div>';
+      return;
+    }
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: history.map(s => s.label),
+        datasets: [{
+          label: 'GPA',
+          data: history.map(s => s.gpa),
+          borderColor: '#1A3C6E',
+          backgroundColor: 'rgba(26,60,110,.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: '#1A3C6E',
+          pointRadius: 5,
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { min: 0, max: 5, grid: { color: 'rgba(0,0,0,.05)' }, ticks: { font: { size: 11 } } },
+          x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+        },
+        plugins: { legend: { display: false } }
+      }
+    });
+  }
+
+  async function loadAIInsight() {
+    const insightEl = document.getElementById('aiInsightText');
+    insightEl.textContent = '⏳ Getting your personalized AI insight...';
+    const semHistory = JSON.parse(localStorage.getItem('acadex_semesters') || '[]');
+    const courses = JSON.parse(localStorage.getItem('acadex_courses') || '[]');
+    const currentGPA = semHistory.length > 0 ? semHistory[semHistory.length - 1].gpa : 3.5;
+    const insight = await AcadExAI.predictGPA({ currentCourses: courses.length > 0 ? courses : [{ name: 'Various Courses', units: 3, grade: 'B' }], semesterHistory: semHistory, currentGPA });
+    insightEl.textContent = insight || "Visit your GPA Tracker to get personalized AI predictions and advice.";
+  }
+
+  // Register service worker (PWA)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  </script>
+</body>
+</html>
